@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+    default:
+        driver: bridge
+
+volumes:
+    dbdata6:
+
+services:
+    express:
+        build: .
+        environment:
+            - MONGODB_URL=${MONGODB_URL}
+            - BASE_URL=${BASE_URL}
+            - PORT=${PORT}
+        ports:
+            - ${PORT}:${PORT}
+        depends_on:
+            - mongodb
+
+    mongodb:
+        image: mongodb/mongodb-community-server:6.0-ubi8
