@@ -23,7 +23,6 @@ app.use(express.static(path.resolve(__dirname, "static")));
 app.use(express.json());
 
 app.post("/shorten", async (req, res) => {
-    console.log("body", req.body);
     let url = await ShortURL.findOne({ origUrl: req.body.url });
     if (url) {
         res.json(url);
@@ -33,7 +32,7 @@ app.post("/shorten", async (req, res) => {
         url = new ShortURL({
             urlId,
             origUrl: req.body.url,
-            shortUrl: `http://${BASE_URL}:${PORT}/` + urlId,
+            shortUrl: `${BASE_URL}/` + urlId,
         });
         await url.save();
         res.json(url);
