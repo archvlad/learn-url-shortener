@@ -1,0 +1,23 @@
+<%- include('_header') %>
+
+    <div class="container signin">
+<% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% }) %>
+        <h4 class="signin-header">Sign In</h4>
+                <form method="post" action="/signin">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Login</label>
+                        <input type="text" name="username" class="form-control form-control-sm shadow-none" required/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control form-control-sm shadow-none" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+                </form>         
+                <p style="text-align: center; margin-top: 10px;">Don't have an account? <a href="/register" style="text-decoration: none;">Register</a></p>   
+    </div>
+    <script src="/bootstrap.bundle.min.js"></script>
+</body>
+</html>

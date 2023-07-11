@@ -1,5 +1,5 @@
 function shorten() {
-    fetch(`/shorten`, {
+    fetch(`/api/shorten`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
