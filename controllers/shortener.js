@@ -1,11 +1,8 @@
-require('dotenv').config();
-const express = require('express');
-
-const router = express.Router();
-
 const ShortURL = require('../models/shorturl');
 
-router.post('/shorten', async (req, res) => {
+require('dotenv').config();
+
+module.exports.shortenURL = async (req, res) => {
   let url = await ShortURL.findOne({ origUrl: req.body.url });
   if (url) {
     res.redirect('/');
@@ -21,6 +18,4 @@ router.post('/shorten', async (req, res) => {
     await url.save();
     res.redirect('/');
   }
-});
-
-module.exports = router;
+};

@@ -1,9 +1,13 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URL, {
+module.exports = () => {
+  mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-});
+  });
 
-module.exports = mongoose.connection;
+  mongoose.connection.once('open', () => console.log('DB Connected'));
+  mongoose.connection.on('error', () => console.log('DB Error'));
+  return mongoose.connection;
+};
