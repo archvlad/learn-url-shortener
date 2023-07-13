@@ -8,11 +8,11 @@ module.exports.shortenURL = async (req, res) => {
     res.redirect('/');
   } else {
     const { nanoid } = await import('nanoid');
-    let urlId = nanoid(10);
+    const urlId = nanoid(10);
     url = new ShortURL({
       urlId,
       origUrl: req.body.url,
-      shortUrl: `${process.env.BASE_URL}/` + urlId,
+      shortUrl: `${process.env.BASE_URL}/${urlId}`,
       createdBy: req.user._id,
     });
     await url.save();

@@ -30,7 +30,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: true,
     saveUninitialized: true,
-  })
+  }),
 );
 
 app.use(flash());

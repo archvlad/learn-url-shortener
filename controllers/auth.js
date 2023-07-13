@@ -17,15 +17,15 @@ module.exports.renderRegister = (req, res) => {
 };
 
 module.exports.registerUser = (req, res, next) => {
-  let username = req.body.username;
-  let password = req.body.password;
+  const { username } = req.body;
+  const { password } = req.body;
   if (username && password) {
     User.findOne({ username }).then((user) => {
       if (user) {
         req.flash('error', 'User already exists');
         return res.redirect('/register');
       }
-      let newUser = new User({
+      const newUser = new User({
         username,
         password,
       });
